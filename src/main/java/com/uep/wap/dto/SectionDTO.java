@@ -1,28 +1,9 @@
-package com.uep.wap.model;
+package com.uep.wap.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "sections")
-public class Section {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class SectionDTO {
     private long id;
-
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "parent_id")
     private long parentId;
-
-    public Section() {
-    }
-
-    public Section(String title, long parentId) {
-        this.title = title;
-        this.parentId = parentId;
-    }
 
     public long getId() {
         return id;
