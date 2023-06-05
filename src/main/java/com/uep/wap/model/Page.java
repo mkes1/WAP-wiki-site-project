@@ -3,27 +3,32 @@ package com.uep.wap.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="pages")
-public class Page{
+@Table(name = "pages")
+public class Page {
     @Id
-    @Column(name ="id")
+    @Column(name = "id")
     private long id;
-    @Column(name ="title")
+
+    @Column(name = "title")
     private String title;
 
-    @Column(name ="content")
+    @Column(name = "content")
     private String content;
-    @Column(name ="sectionId")
+
+    @Column(name = "sectionId")
     private long sectionId;
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    public void setId(long id){
+    public void setId(long id) {
         this.id = id;
     }
-    public long getId(){
+
+    public long getId() {
         return id;
     }
-    public Page(){
+
+    public Page() {
 
     }
 
