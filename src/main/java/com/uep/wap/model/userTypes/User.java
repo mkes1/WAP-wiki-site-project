@@ -1,4 +1,4 @@
-package com.uep.wap.model;
+package com.uep.wap.model.userTypes;
 
 import javax.persistence.*;
 
@@ -60,7 +60,19 @@ public class User {
         this.role = role;
     }
 
+    public void login(User user) {
+        // Logic for login
+    }
+
+    public void logout(User user) {
+        // Logic for logout
+    }
+
+    public void changePass(User user) {
+        // Logic for changing password
+    }
+
+    public void viewPages(User user) {
+        // Logic for viewing pages
+    }
 }
-
-
-
