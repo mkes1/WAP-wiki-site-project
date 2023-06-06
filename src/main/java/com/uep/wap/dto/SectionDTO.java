@@ -5,6 +5,15 @@ public class SectionDTO {
     private String title;
     private long parentId;
 
+    public SectionDTO() {
+    }
+
+    public SectionDTO(long id, String title, long parentId) {
+        this.id = id;
+        this.title = title;
+        this.parentId = parentId;
+    }
+
     public long getId() {
         return id;
     }

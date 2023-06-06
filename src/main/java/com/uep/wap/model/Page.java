@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "pages")
 public class Page {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -15,21 +16,27 @@ public class Page {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "sectionId")
-    private long sectionId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id")
+    private Section section;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // Constructor, getters, and setters
 
-    public void setId(long id) {
-        this.id = id;
+    public Page() {
+    }
+
+    public Page(String title, String content, Section section) {
+        this.title = title;
+        this.content = content;
+        this.section = section;
     }
 
     public long getId() {
         return id;
     }
 
-    public Page() {
-
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -48,17 +55,11 @@ public class Page {
         this.content = content;
     }
 
-    public long getSectionId() {
-        return sectionId;
+    public Section getSection() {
+        return section;
     }
 
-    public void setSectionId(long sectionId) {
-        this.sectionId = sectionId;
-    }
-
-    public Page(String title, String content, long sectionId) {
-        this.title = title;
-        this.content = content;
-        this.sectionId = sectionId;
+    public void setSection(Section section) {
+        this.section = section;
     }
 }
