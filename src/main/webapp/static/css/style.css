@@ -1,0 +1,105 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading styles */
+h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Link styles */
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section styles */
+.section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Media file styles */
+.media-file {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.media-file img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.media-file-title {
+    font-weight: bold;
+}
+
+.media-file-type {
+    color: #888;
+    font-size: 14px;
+}
+
+/* User styles */
+.user {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-details img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-details .username {
+    font-weight: bold;
+}
+
+.user-role {
+    color: #888;
+    font-size: 14px;
+}

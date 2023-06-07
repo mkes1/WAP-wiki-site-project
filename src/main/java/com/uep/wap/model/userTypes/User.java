@@ -2,6 +2,8 @@ package com.uep.wap.model.userTypes;
 
 import javax.persistence.*;
 
+import static com.uep.wap.model.Role.USER;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -62,17 +64,39 @@ public class User {
 
     public void login(User user) {
         // Logic for login
+        // You can implement authentication and authorization logic here
+        // For example, you can check if the provided username and password match the user's credentials in the database
+        if (user.getUsername().equals(this.username) && user.getPassword().equals(this.password)) {
+            System.out.println("Login successful");
+        } else {
+            System.out.println("Login failed");
+        }
     }
 
     public void logout(User user) {
         // Logic for logout
+        // You can implement session management logic here
+        // For example, you can invalidate the user's session or clear any stored authentication tokens
+        System.out.println("Logged out");
     }
 
     public void changePass(User user) {
         // Logic for changing password
+        // You can implement password change logic here
+        // For example, you can update the user's password in the database
+        this.password = user.getPassword();
+        System.out.println("Password changed successfully");
     }
 
     public void viewPages(User user) {
         // Logic for viewing pages
+        // You can implement page access control logic based on user roles or permissions here
+        // For example, you can check if the user has the required role or permission to access a specific page
+        if (user.getRole().equals(USER)) {
+            System.out.println("Viewing all pages");
+        } else {
+            System.out.println("Viewing limited pages");
+        }
     }
+
 }
