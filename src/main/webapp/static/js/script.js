@@ -1,7 +1,7 @@
 // Function to fetch and display page details
-function fetchPageDetails() {
+function fetchPageDetails(pageId) {
     // Fetch page details from the backend API
-    fetch('/api/pages/{pageId}')
+    fetch('/pages/' + pageId)
         .then(response => response.json())
         .then(page => {
             // Update page details on the page
@@ -14,9 +14,9 @@ function fetchPageDetails() {
 }
 
 // Function to fetch and display section details
-function fetchSectionDetails() {
+function fetchSectionDetails(sectionId) {
     // Fetch section details from the backend API
-    fetch('/api/sections/{sectionId}')
+    fetch('/sections/' + sectionId)
         .then(response => response.json())
         .then(section => {
             // Update section details on the page
@@ -28,9 +28,9 @@ function fetchSectionDetails() {
 }
 
 // Function to fetch and display media file details
-function fetchMediaFileDetails() {
+function fetchMediaFileDetails(mediafileId) {
     // Fetch media file details from the backend API
-    fetch('/api/mediafiles/{mediafileId}')
+    fetch('/mediafiles/' + mediafileId)
         .then(response => response.json())
         .then(mediafile => {
             // Update media file details on the page
@@ -42,24 +42,15 @@ function fetchMediaFileDetails() {
         .catch(error => console.error('Error:', error));
 }
 
-// Function to fetch and display user details
-function fetchUserDetails() {
-    // Fetch user details from the backend API
-    fetch('/api/users/{userId}')
-        .then(response => response.json())
-        .then(user => {
-            // Update user details on the page
-            document.getElementById('userId').textContent = user.id;
-            document.getElementById('username').textContent = user.username;
-            document.getElementById('userRole').textContent = user.role;
-        })
-        .catch(error => console.error('Error:', error));
-}
-
 // Call the fetch functions on page load
 window.onload = function () {
-    fetchPageDetails();
-    fetchSectionDetails();
-    fetchMediaFileDetails();
-    fetchUserDetails();
+    const pageId = 1; // Replace with the actual page ID
+    const sectionId = 1; // Replace with the actual section ID
+    const mediafileId = 1; // Replace with the actual media file ID
+    const userId = 1; // Replace with the actual user ID
+
+    fetchPageDetails(pageId);
+    fetchSectionDetails(sectionId);
+    fetchMediaFileDetails(mediafileId);
+    fetchUserDetails(userId);
 };
