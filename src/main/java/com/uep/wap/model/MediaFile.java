@@ -2,6 +2,8 @@ package com.uep.wap.model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "media-files")
 public class MediaFile {
     @Id
     @Column(name = "id")
