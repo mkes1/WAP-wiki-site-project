@@ -10,8 +10,7 @@ function fetchPageDetails() {
          // Update section details on the page
         document.getElementById('pageTitle').textContent = page.title;
         document.getElementById('pageContent').textContent = page.content;
-      });
-    })
+      })
     //.catch(error => console.error('Error:', error));
 }
 
@@ -45,7 +44,6 @@ function fetchMediaFileDetails() {
             document.getElementById('sectionId').textContent = mediaFile.sectionId;
         })
         //.catch(error => console.error('Error:', error));
-}
 };
 
 // Call the fetch functions on page load
