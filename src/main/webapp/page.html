@@ -1,14 +1,33 @@
 <html>
-    <head>
-        <title>Page - Wiki Site</title>
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    </head>
-    <body>
-        <h1 id="pageTitle">Page Title</h1>
+<head>
+    <title>Page - Wiki Site</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+<h1 id="pageTitle">Page Title</h1>
 
-        <p id="pageContent">Content of the page goes here</p>
+<p id="pageContent">Content of the page goes here</p>
 
-        <a href="index.html">Go back to homepage</a>
+<a href="/index.html">Go back to homepage</a>
 
-    </body>
+<script>
+            function fetchPageDetails() {
+				var urlParams = new URLSearchParams(window.location.search);
+  				var pageId = urlParams.get("id");
+              // Fetch and display the list of pages
+		        fetch('/pages/'+pageId)
+		    		.then(response => response.json())
+		    		.then(page => {
+		         // Update section details on the page
+		        document.getElementById('pageTitle').textContent = page.title;
+		        document.getElementById('pageContent').textContent = page.content;
+		      	})
+                // Call the fetchPageDetails function on page load
+
+            }
+            window.onload = fetchPageDetails;
+        </script>
+
+
+</body>
 </html>

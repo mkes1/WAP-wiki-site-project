@@ -1,39 +1,15 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Pokemons Wiki</title>
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-    </head>
-    <body>
-        <h1>Pokemons Wiki</h1>
-        <div>
-            <h2>List of Pages:</h2>
-            <ul id="pagesList"></ul>
-        </div>
-
-        <script>
-            function fetchPageDetails() {
-              // Fetch and display the list of pages
-              fetch('/pages')
-                .then(response => response.json())
-                .then(pages => {
-                  var pagesList = document.getElementById('pagesList');
-
-                  pages.forEach(page => {
-                    var pageLink = document.createElement('a');
-                    pageLink.href = 'pages/' + page.id;
-                    pageLink.textContent = page.title;
-
-                    var listItem = document.createElement('li');
-                    listItem.appendChild(pageLink);
-
-                    pagesList.appendChild(listItem);
-                  });
-                })
-                //.catch(error => console.error('Error:', error));
-            }
-
-            // Call the fetchPageDetails function on page load
-            window.onload = fetchPageDetails;
-        </script>
-    </body>
+<head>
+    <title>Pokemons Wiki</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script src="static/js/script.js"></script> <!-- Link to the JavaScript file -->
+</head>
+<body>
+<h1>Pokemons Wiki</h1>
+<div>
+    <h2>List of Pages:</h2>
+    <ul id="pagesList"></ul>
+</div>
+</body>
 </html>

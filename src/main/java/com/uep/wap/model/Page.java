@@ -16,6 +16,10 @@ public class Page {
     @Column(name = "content")
     private String content;
 
+
+    @Column(name = "url")
+    private String url;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id")
     private Section section;
@@ -25,10 +29,12 @@ public class Page {
     public Page() {
     }
 
-    public Page(String title, String content, Section section) {
+    public Page(String title, String content, Section section, String url) {
         this.title = title;
         this.content = content;
         this.section = section;
+        this.url = url;
+
     }
 
     public long getId() {
@@ -62,4 +68,7 @@ public class Page {
     public void setSection(Section section) {
         this.section = section;
     }
+
+    public String getUrl() {return url;}
+    public void setUrl(String url) {this.url = url;}
 }
