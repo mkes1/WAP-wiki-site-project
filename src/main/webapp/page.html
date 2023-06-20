@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
+<img id="pageImage" src="" alt="">
 <h1 id="pageTitle">Page Title</h1>
 
 <p id="pageContent">Content of the page goes here</p>
@@ -11,23 +12,28 @@
 <a href="/index.html">Go back to homepage</a>
 
 <script>
-            function fetchPageDetails() {
-				var urlParams = new URLSearchParams(window.location.search);
-  				var pageId = urlParams.get("id");
-              // Fetch and display the list of pages
-		        fetch('/pages/'+pageId)
-		    		.then(response => response.json())
-		    		.then(page => {
-		         // Update section details on the page
-		        document.getElementById('pageTitle').textContent = page.title;
-		        document.getElementById('pageContent').textContent = page.content;
-		      	})
-                // Call the fetchPageDetails function on page load
+    function fetchPageDetails() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var pageId = urlParams.get("id");
 
-            }
-            window.onload = fetchPageDetails;
-        </script>
+        // Fetch and display the page details
+        fetch('/pages/' + pageId)
+            .then(response => response.json())
+            .then(page => {
+                // Update section details on the page
+                document.getElementById('pageTitle').textContent = page.title;
+                document.getElementById('pageContent').textContent = page.content;
 
+                // Create an <img> element
+                var imgElement = document.getElementById('pageImage');
 
+                // Set the src and alt attributes using the image URL from the database
+                imgElement.src = page.url;
+                imgElement.alt = page.title;
+            });
+    }
+
+    window.onload = fetchPageDetails;
+</script>
 </body>
 </html>

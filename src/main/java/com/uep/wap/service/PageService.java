@@ -76,6 +76,6 @@ public class PageService {
     }
 
     private PageDTO convertToDTO(Page page) {
-        return new PageDTO(page.getId(), page.getTitle(), page.getContent(), page.getSection().getId());
+        return new PageDTO(page.getId(), page.getTitle(), page.getContent(), page.getSection().getId(), page.getUrl());
     }
 }

@@ -6,14 +6,17 @@ public class PageDTO {
     private String content;
     private long sectionId;
 
+    private String url;
+
     public PageDTO() {
     }
 
-    public PageDTO(long id, String title, String content, long sectionId) {
+    public PageDTO(long id, String title, String content, long sectionId, String url) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.sectionId = sectionId;
+        this.url = url;
     }
 
     public long getId() {
