@@ -19,5 +19,29 @@ function fetchPageDetails() {
         //.catch(error => console.error('Error:', error));
 }
 
-// Call the fetchPageDetails function on page load
-window.onload = fetchPageDetails;
+function fetchSectionDetails() {
+              // Fetch and display the list of sections
+              fetch('/sections')
+                .then(response => response.json())
+                .then(sections => {
+                  var sectionsList = document.getElementById('sectionsList');
+
+                  sections.forEach(section => {
+                    var sectionLink = document.createElement('a');
+                    sectionLink.href = 'section.html/?id=' + section.id;
+                    sectionLink.textContent = section.title;
+
+                    var listItem = document.createElement('li');
+                    listItem.appendChild(sectionLink);
+
+                    sectionsList.appendChild(listItem);
+                  });
+                })
+                //.catch(error => console.error('Error:', error));
+            }
+window.onload = function () {
+    fetchPageDetails();
+    fetchSectionDetails();
+   };
+
+

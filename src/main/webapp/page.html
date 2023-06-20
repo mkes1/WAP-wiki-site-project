@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Page - Wiki Site</title>
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/style.css">
 </head>
 <body>
 <img id="pageImage" src="" alt="">
@@ -18,7 +18,12 @@
 
         // Fetch and display the page details
         fetch('/pages/' + pageId)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(page => {
                 // Update section details on the page
                 document.getElementById('pageTitle').textContent = page.title;
@@ -27,9 +32,12 @@
                 // Create an <img> element
                 var imgElement = document.getElementById('pageImage');
 
-                // Set the src and alt attributes using the image URL from the database
-                imgElement.src = page.url;
+                // Set the src attribute using the image URL from the database
+                imgElement.src = 'http://localhost:8080/images/' + page.title.toLowerCase() +'.png';
                 imgElement.alt = page.title;
+            })
+            .catch(error => {
+                console.log('Error:', error);
             });
     }
 
