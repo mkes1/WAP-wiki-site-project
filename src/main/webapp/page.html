@@ -1,47 +1,69 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Page - Wiki Site</title>
-    <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/style.css">
-</head>
-<body>
-<img id="pageImage" src="" alt="">
-<h1 id="pageTitle">Page Title</h1>
+    <head>
+        <title>Page - Wiki Site</title>
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/style.css">
+    </head>
+    <body>
+        <img id="pageImage" src="" alt="">
 
-<p id="pageContent">Content of the page goes here</p>
+        <h1 id="pageTitle">Page Title</h1>
 
-<a href="/index.html">Go back to homepage</a>
+        <button id="editButton" onClick="editContent()">Edit</button>
 
-<script>
-    function fetchPageDetails() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var pageId = urlParams.get("id");
+        <p id="pageContent">Content of the page goes here</p>
 
-        // Fetch and display the page details
-        fetch('/pages/' + pageId)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        <a href="/index.html">Go back to homepage</a>
+
+        <script>
+            function fetchPageDetails() {
+                var urlParams = new URLSearchParams(window.location.search);
+                var pageId = urlParams.get("id");
+
+                fetch('/pages/' + pageId)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(page => {
+                        document.getElementById('pageTitle').textContent = page.title;
+                        document.getElementById('pageContent').textContent = page.content;
+
+                        var imgElement = document.getElementById('pageImage');
+
+                        imgElement.src = 'http://localhost:8080/images/' + page.title.toLowerCase() + '.png';
+                        imgElement.alt = page.title;
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                    });
+            }
+
+            function editContent() {
+                var newContent = prompt("Enter the new content:");
+                if (newContent) {
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var pageId = urlParams.get("id");
+
+                    fetch('/pages/' + pageId, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({content: newContent})
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            document.getElementById('pageContent').textContent = newContent;
+                        })
+                        .catch(error => console.error(error));
                 }
-                return response.json();
-            })
-            .then(page => {
-                // Update section details on the page
-                document.getElementById('pageTitle').textContent = page.title;
-                document.getElementById('pageContent').textContent = page.content;
+            }
 
-                // Create an <img> element
-                var imgElement = document.getElementById('pageImage');
-
-                // Set the src attribute using the image URL from the database
-                imgElement.src = 'http://localhost:8080/images/' + page.title.toLowerCase() +'.png';
-                imgElement.alt = page.title;
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-    }
-
-    window.onload = fetchPageDetails;
-</script>
-</body>
+            window.onload = fetchPageDetails;
+        </script>
+    </body>
 </html>

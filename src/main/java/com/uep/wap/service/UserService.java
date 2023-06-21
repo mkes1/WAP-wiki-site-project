@@ -18,22 +18,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void login(User user) {
-        // Logic for login
-    }
-
-    public void logout(User user) {
-        // Logic for logout
-    }
-
-    public void changePass(User user) {
-        // Logic for changing password
-    }
-
-    public void viewPages(User user) {
-        // Logic for viewing pages
-    }
-
     public UserDTO getUserById(long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
@@ -45,7 +29,4 @@ public class UserService {
         }
         return null;
     }
-
-
-    // Other methods related to user management
 }

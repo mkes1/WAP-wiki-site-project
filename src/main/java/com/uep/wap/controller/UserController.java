@@ -27,6 +27,4 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    // Add other endpoints for updating, deleting, listing users, etc.
 }

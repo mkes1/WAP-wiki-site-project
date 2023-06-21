@@ -16,15 +16,12 @@ public class Page {
     @Column(name = "content")
     private String content;
 
-
     @Column(name = "url")
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id")
     private Section section;
-
-    // Constructor, getters, and setters
 
     public Page() {
     }
@@ -34,7 +31,6 @@ public class Page {
         this.content = content;
         this.section = section;
         this.url = url;
-
     }
 
     public long getId() {

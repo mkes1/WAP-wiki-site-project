@@ -2,54 +2,49 @@
     <head>
         <title>Section - Wiki Site</title>
         <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/style.css">
-
     </head>
     <body>
 
-    <h1 id="sectionTitle">Section Title</h1>
+        <h1 id="sectionTitle">Section Title</h1>
 
-    <div>
-        <h2>List of Pages:</h2>
-        <ul id="pagesList"></ul>
-    </div>
-    <script>
-        function fetchSectionDetails() {
-            var urlParams = new URLSearchParams(window.location.search);
-            var sectionId = urlParams.get("id");
+        <div>
+            <h2>List of Pages:</h2>
+            <ul id="pagesList"></ul>
+        </div>
 
-            // Fetch and display the section details
-            fetch('/sections/' + sectionId)
-                .then(response => response.json())
-                .then(section => {
-                    // Update section details on the page
-                    document.getElementById('sectionTitle').textContent = section.title;
-                })
-                .catch(error => {
-                    console.log('Error:', error);
-                });
+        <script>
+            function fetchSectionDetails() {
+                var urlParams = new URLSearchParams(window.location.search);
+                var sectionId = urlParams.get("id");
 
-            // Fetch and display the list of pages for the section
-            fetch('/pages?section_id=' + sectionId)
-                .then(response => response.json())
-                .then(pages => {
-                    var pagesList = document.getElementById('pagesList');
-
-                    // Clear the existing list
-                    pagesList.innerHTML = '';
-
-                    // Populate the list with the pages
-                    pages.forEach(page => {
-                        var listItem = document.createElement('li');
-                        listItem.textContent = page.title;
-                        pagesList.appendChild(listItem);
+                fetch('/sections/' + sectionId)
+                    .then(response => response.json())
+                    .then(section => {
+                        document.getElementById('sectionTitle').textContent = section.title;
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
                     });
-                })
-                .catch(error => {
-                    console.log('Error:', error);
-                });
-        }
 
-        window.onload = fetchSectionDetails;
-    </script>
+                fetch('/pages?section_id=' + sectionId)
+                    .then(response => response.json())
+                    .then(pages => {
+                        var pagesList = document.getElementById('pagesList');
+
+                        pagesList.innerHTML = '';
+
+                        pages.forEach(page => {
+                            var listItem = document.createElement('li');
+                            listItem.textContent = page.title;
+                            pagesList.appendChild(listItem);
+                        });
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                    });
+            }
+
+            window.onload = fetchSectionDetails;
+        </script>
     </body>
 </html>

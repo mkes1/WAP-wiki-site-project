@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class PageService {
-
     private final PageRepository pageRepository;
     private final SectionRepository sectionRepository;
 
